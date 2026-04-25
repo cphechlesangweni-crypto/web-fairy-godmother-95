@@ -1,10 +1,13 @@
 import { FileText, ShieldCheck, CreditCard, RefreshCw, Lock, LineChart } from "lucide-react";
 import ServicePage from "@/components/ServicePage";
+import apImage from "@/assets/accounts-payable.jpg";
 
 export default function AccountsPayable() {
   return (
     <ServicePage
       eyebrow="Accounts Payable"
+      heroImage={apImage}
+      heroImageAlt="SeedCapital finance team reviewing supplier invoices on the AP Control platform"
       heroTitle={<>Your AP function, run end to end. <em className="italic text-primary-glow">Powered by AP Control.</em></>}
       heroDescription="From the moment a supplier invoice arrives to the moment payment hits their account — we handle everything. You focus on running your business. We focus on running your AP."
       ctaLabel="Take control of your Accounts Payable"

@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import CTABanner from "@/components/CTABanner";
+import Team from "@/components/Team";
+import founderImage from "@/assets/team-sphesihle.jpg";
 
 const values = [
   { word: "Growth", description: "We help businesses grow by removing the operational drag that prevents focus on what matters." },
@@ -65,22 +67,31 @@ export default function About() {
 
       {/* Founder */}
       <section className="container py-20 md:py-28">
-        <div className="bg-card border border-border rounded-3xl p-10 md:p-16 shadow-elegant">
-          <div className="grid md:grid-cols-[auto_1fr] gap-10 items-center">
-            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-primary-gradient text-primary-foreground flex items-center justify-center font-display text-5xl shadow-brand">
-              SM
+        <div className="bg-card border border-border rounded-3xl overflow-hidden shadow-elegant">
+          <div className="grid md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] items-stretch">
+            <div className="aspect-[4/5] md:aspect-auto bg-muted">
+              <img
+                src={founderImage}
+                alt="Sphesihle P. Makhanya, Founder and CEO of SeedCapital Group"
+                width={800}
+                height={1000}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div>
+            <div className="p-10 md:p-14 flex flex-col justify-center">
               <span className="text-xs uppercase tracking-[0.22em] text-primary font-semibold">Founder</span>
               <h3 className="font-display text-3xl md:text-4xl text-secondary mt-3">Sphesihle P. Makhanya</h3>
               <p className="text-muted-foreground mt-2">Founder & CEO · SeedCapital Group (Pty) Ltd</p>
-              <p className="mt-5 text-base md:text-lg text-secondary/80 leading-relaxed max-w-2xl">
+              <p className="mt-6 text-base md:text-lg text-secondary/80 leading-relaxed font-display italic">
                 "We started SeedCapital because every conversation with a business owner ended the same way: 'I shouldn't be the one dealing with this.' Our job is to make sure they never have to again."
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      <Team />
 
       {/* What we do */}
       <section className="container pb-20 md:pb-28">

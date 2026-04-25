@@ -5,6 +5,8 @@ import SectionHeading from "@/components/SectionHeading";
 import Testimonial from "@/components/Testimonial";
 import CTABanner from "@/components/CTABanner";
 import FAQ from "@/components/FAQ";
+import Team from "@/components/Team";
+import heroImage from "@/assets/hero-operations.jpg";
 
 const pillars = [
   {
@@ -82,45 +84,74 @@ export default function Home() {
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/30 rounded-full blur-[140px]" />
         <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-primary-glow/20 rounded-full blur-[120px]" />
 
-        <div className="container relative pt-24 pb-32 md:pt-32 md:pb-40">
-          <div className="inline-flex items-center gap-2 bg-secondary-foreground/10 border border-secondary-foreground/15 rounded-full pl-2 pr-4 py-1.5 mb-8">
-            <span className="bg-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">New</span>
-            <span className="text-xs text-secondary-foreground/80">Operations & compliance partner — not a vendor</span>
+        <div className="container relative pt-20 pb-24 md:pt-28 md:pb-32 grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 bg-secondary-foreground/10 border border-secondary-foreground/15 rounded-full pl-2 pr-4 py-1.5 mb-8">
+              <span className="bg-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">New</span>
+              <span className="text-xs text-secondary-foreground/80">Operations & compliance partner — not a vendor</span>
+            </div>
+
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-balance leading-[1.0]">
+              We take responsibility for your operations <em className="italic text-primary-glow">— end to end.</em>
+            </h1>
+
+            <p className="mt-8 max-w-xl text-lg md:text-xl text-secondary-foreground/75 leading-relaxed">
+              Facilities. Payroll. Accounts Payable. <br className="hidden sm:block" />
+              <span className="text-secondary-foreground/95 font-medium">Fully managed. Fully compliant.</span>
+            </p>
+
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary-glow text-primary-foreground rounded-full px-8 h-14 text-base">
+                <Link to="/contact" className="inline-flex items-center gap-2">
+                  Book a Discovery Call <ArrowRight size={18} />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="bg-transparent border-secondary-foreground/30 text-secondary-foreground hover:bg-secondary-foreground/10 rounded-full px-8 h-14 text-base">
+                <a href="#solutions">Explore our solutions</a>
+              </Button>
+            </div>
+
+            {/* Stats */}
+            <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 border-t border-secondary-foreground/15 pt-8">
+              {[
+                { v: "3", l: "Core operational pillars" },
+                { v: "4 wk", l: "Standard implementation" },
+                { v: "100%", l: "Compliance ownership" },
+                { v: "0", l: "Key-person dependency" },
+              ].map((s, i) => (
+                <div key={i}>
+                  <div className="font-display text-3xl md:text-4xl text-primary-glow font-medium">{s.v}</div>
+                  <div className="text-xs text-secondary-foreground/60 mt-2 leading-snug">{s.l}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <h1 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] font-medium max-w-5xl text-balance leading-[0.98]">
-            We take responsibility for your operations <em className="italic text-primary-glow">— end to end.</em>
-          </h1>
-
-          <p className="mt-8 max-w-2xl text-lg md:text-xl text-secondary-foreground/75 leading-relaxed">
-            Facilities. Payroll. Accounts Payable. <br className="hidden sm:block" />
-            <span className="text-secondary-foreground/95 font-medium">Fully managed. Fully compliant.</span>
-          </p>
-
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary-glow text-primary-foreground rounded-full px-8 h-14 text-base">
-              <Link to="/contact" className="inline-flex items-center gap-2">
-                Book a Discovery Call <ArrowRight size={18} />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="bg-transparent border-secondary-foreground/30 text-secondary-foreground hover:bg-secondary-foreground/10 rounded-full px-8 h-14 text-base">
-              <a href="#solutions">Explore our solutions</a>
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 max-w-4xl border-t border-secondary-foreground/15 pt-10">
-            {[
-              { v: "3", l: "Core operational pillars" },
-              { v: "4 wk", l: "Standard implementation" },
-              { v: "100%", l: "Compliance ownership" },
-              { v: "0", l: "Key-person dependency" },
-            ].map((s, i) => (
-              <div key={i}>
-                <div className="font-display text-3xl md:text-4xl text-primary-glow font-medium">{s.v}</div>
-                <div className="text-xs text-secondary-foreground/60 mt-2 leading-snug">{s.l}</div>
+          {/* Hero image */}
+          <div className="relative lg:block">
+            <div className="absolute -inset-6 bg-primary/15 rounded-[2rem] blur-2xl" />
+            <div className="relative rounded-[1.75rem] overflow-hidden shadow-elegant border border-secondary-foreground/10 aspect-[4/5] lg:aspect-[5/6]">
+              <img
+                src={heroImage}
+                alt="SeedCapital Group consultants reviewing operations strategy"
+                width={1600}
+                height={1200}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-secondary/40 via-transparent to-transparent" />
+              {/* Floating card */}
+              <div className="absolute bottom-5 left-5 right-5 bg-background/95 backdrop-blur-md rounded-2xl p-4 border border-border shadow-soft">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0">
+                    <Check size={18} />
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Live engagement</div>
+                    <div className="text-sm font-medium text-secondary leading-tight">Compliance score 98% · Payroll on schedule</div>
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -232,6 +263,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Team />
 
       <FAQ eyebrow="General FAQ" title="What people ask before getting started" items={generalFAQ} />
 

@@ -25,6 +25,8 @@ export interface ServicePageProps {
   eyebrow: string;
   heroTitle: ReactNode;
   heroDescription: string;
+  heroImage?: string;
+  heroImageAlt?: string;
   ctaLabel: string;
   ctaTagline: string;
   problemTitle: string;
@@ -45,7 +47,13 @@ export interface ServicePageProps {
 export default function ServicePage(p: ServicePageProps) {
   return (
     <>
-      <PageHero eyebrow={p.eyebrow} title={p.heroTitle} description={p.heroDescription}>
+      <PageHero
+        eyebrow={p.eyebrow}
+        title={p.heroTitle}
+        description={p.heroDescription}
+        image={p.heroImage}
+        imageAlt={p.heroImageAlt}
+      >
         <div className="flex flex-wrap gap-4">
           <Button asChild size="lg" className="bg-primary hover:bg-primary-glow text-primary-foreground rounded-full px-8 h-14 text-base">
             <Link to="/contact" className="inline-flex items-center gap-2">
