@@ -1,10 +1,13 @@
 import { Users, Shield, ClipboardCheck, Package, Eye, TrendingUp } from "lucide-react";
 import ServicePage from "@/components/ServicePage";
+import facilitiesImage from "@/assets/facilities.jpg";
 
 export default function Facilities() {
   return (
     <ServicePage
       eyebrow="Facilities & Workforce"
+      heroImage={facilitiesImage}
+      heroImageAlt="SeedCapital facilities team supervising operations in a hotel lobby"
       heroTitle={<>Fully managed facilities. <em className="italic text-primary-glow">Workforce, compliance, supply.</em></>}
       heroDescription="We become your employer of record — recruiting, supervising and managing facilities staff, while running daily operations and consumables supply. So you can focus on running your business."
       ctaLabel="Clean up your operations"

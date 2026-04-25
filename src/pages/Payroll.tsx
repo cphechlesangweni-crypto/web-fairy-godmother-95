@@ -1,10 +1,13 @@
 import { Calculator, Shield, AlertTriangle, Calendar, FileCheck, BarChart3 } from "lucide-react";
 import ServicePage from "@/components/ServicePage";
+import payrollImage from "@/assets/payroll.jpg";
 
 export default function Payroll() {
   return (
     <ServicePage
       eyebrow="Payroll Outsourcing"
+      heroImage={payrollImage}
+      heroImageAlt="Payroll specialist reviewing the SeedCapital Payroll Intelligence dashboard"
       heroTitle={<>Payroll, owned end to end. <em className="italic text-primary-glow">Powered by Payroll Intelligence.</em></>}
       heroDescription="We take full responsibility for payroll accuracy and compliance — from timesheet collection to payslip delivery, statutory submissions and continuous compliance monitoring. So your team never has to worry about it again."
       ctaLabel="Take payroll off your plate"
