@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import CTABanner from "@/components/CTABanner";
+import Team from "@/components/Team";
+import founderImage from "@/assets/team-sphesihle.jpg";
 
 const values = [
   { word: "Growth", description: "We help businesses grow by removing the operational drag that prevents focus on what matters." },
