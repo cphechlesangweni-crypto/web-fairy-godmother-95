@@ -264,6 +264,8 @@ export default function Home() {
         </div>
       </section>
 
+      <Team />
+
       <FAQ eyebrow="General FAQ" title="What people ask before getting started" items={generalFAQ} />
 
       <CTABanner
