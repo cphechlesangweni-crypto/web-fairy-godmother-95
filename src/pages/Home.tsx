@@ -6,6 +6,9 @@ import Testimonial from "@/components/Testimonial";
 import CTABanner from "@/components/CTABanner";
 import FAQ from "@/components/FAQ";
 import Team from "@/components/Team";
+import BlueprintGrid from "@/components/BlueprintGrid";
+import Marquee from "@/components/Marquee";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import heroImage from "@/assets/hero-operations.jpg";
 
 const pillars = [
@@ -72,35 +75,50 @@ const generalFAQ = [
   { q: "Where are you based and who do you serve?", a: "We are based in Westville, South Africa, and serve businesses nationwide across hospitality, retail, corporate offices, NPOs, government suppliers and growing SMEs." },
 ];
 
+const marqueeWords = [
+  "Facilities Management",
+  "Payroll Intelligence",
+  "Accounts Payable",
+  "Compliance Ownership",
+  "Audit-Ready Reporting",
+  "Workforce Solutions",
+  "Real-Time Dashboards",
+  "Business Continuity",
+  "Operational Excellence",
+  "Risk Mitigation",
+  "Full Accountability",
+];
+
 export default function Home() {
+  const heroRef = useScrollReveal<HTMLElement>();
+  const pillarsRef = useScrollReveal<HTMLElement>();
+  const positionRef = useScrollReveal<HTMLElement>();
+  const whyRef = useScrollReveal<HTMLElement>();
+  const testimonialsRef = useScrollReveal<HTMLElement>();
+
   return (
     <>
       {/* HERO */}
-      <section className="relative bg-background text-foreground overflow-hidden border-b border-border">
-        <div className="absolute inset-0 opacity-[0.5]" style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--border)) 1px, transparent 0)',
-          backgroundSize: '32px 32px',
-        }} />
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px]" />
-        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-primary-glow/10 rounded-full blur-[120px]" />
+      <section ref={heroRef} className="relative bg-background text-foreground overflow-hidden border-b border-border">
+        <BlueprintGrid />
 
         <div className="container relative pt-20 pb-24 md:pt-28 md:pb-32 grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 bg-muted border border-border rounded-full pl-2 pr-4 py-1.5 mb-8">
+            <div data-reveal="fade-down" className="inline-flex items-center gap-2 bg-muted border border-border rounded-full pl-2 pr-4 py-1.5 mb-8">
               <span className="bg-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">New</span>
               <span className="text-xs text-muted-foreground">Operations & compliance partner — not a vendor</span>
             </div>
 
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-balance leading-[1.0] text-secondary">
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-balance leading-[1.0] text-secondary" data-reveal="fade-up" data-reveal-delay="150">
               We take responsibility for your operations <em className="italic text-primary">— end to end.</em>
             </h1>
 
-            <p className="mt-8 max-w-xl text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p data-reveal="fade-up" data-reveal-delay="350" className="mt-8 max-w-xl text-lg md:text-xl text-muted-foreground leading-relaxed">
               Facilities. Payroll. Accounts Payable. <br className="hidden sm:block" />
               <span className="text-secondary font-medium">Fully managed. Fully compliant.</span>
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div data-reveal="fade-up" data-reveal-delay="500" className="mt-10 flex flex-wrap gap-4">
               <Button asChild size="lg" className="bg-primary hover:bg-primary-glow text-primary-foreground rounded-full px-8 h-14 text-base">
                 <Link to="/contact" className="inline-flex items-center gap-2">
                   Book a Discovery Call <ArrowRight size={18} />
@@ -112,7 +130,7 @@ export default function Home() {
             </div>
 
             {/* Stats */}
-            <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 border-t border-border pt-8">
+            <div data-reveal="fade-up" data-reveal-delay="650" className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 border-t border-border pt-8">
               {[
                 { v: "3", l: "Core operational pillars" },
                 { v: "4 wk", l: "Standard implementation" },
@@ -128,7 +146,7 @@ export default function Home() {
           </div>
 
           {/* Hero image */}
-          <div className="relative lg:block">
+          <div className="relative lg:block" data-reveal="fade-left" data-reveal-delay="300">
             <div className="absolute -inset-6 bg-primary/10 rounded-[2rem] blur-2xl" />
             <div className="relative rounded-[1.75rem] overflow-hidden shadow-elegant border border-border aspect-[4/5] lg:aspect-[5/6]">
               <img
@@ -154,25 +172,39 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Marquee ticker at bottom of hero */}
+        <div data-reveal="fade" data-reveal-delay="800" className="relative border-t border-border/50 py-5 md:py-6">
+          <Marquee
+            items={marqueeWords}
+            speed={18}
+            separator="✦"
+            className="text-secondary/50"
+          />
+        </div>
       </section>
 
       {/* THREE PILLARS */}
-      <section id="solutions" className="container py-24 md:py-32">
-        <SectionHeading
-          eyebrow="Your 3 Core Solutions"
-          title="Three high-risk functions. One operations partner."
-          description="Each pillar solves a distinct business risk — we run them with structure, compliance and full accountability."
-          align="center"
-          className="mb-16"
-        />
+      <section ref={pillarsRef} id="solutions" className="container py-24 md:py-32">
+        <div data-reveal="fade-up">
+          <SectionHeading
+            eyebrow="Your 3 Core Solutions"
+            title="Three high-risk functions. One operations partner."
+            description="Each pillar solves a distinct business risk — we run them with structure, compliance and full accountability."
+            align="center"
+            className="mb-16"
+          />
+        </div>
 
         <div className="grid lg:grid-cols-3 gap-6">
-          {pillars.map((p) => {
+          {pillars.map((p, i) => {
             const Icon = p.icon;
             return (
               <Link
                 key={p.href}
                 to={p.href}
+                data-reveal="fade-up"
+                data-reveal-delay={String(i * 150)}
                 className="group relative bg-card border border-border rounded-3xl p-8 md:p-10 shadow-soft hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 flex flex-col"
               >
                 <div className="flex items-center justify-between mb-8">
@@ -192,16 +224,16 @@ export default function Home() {
       </section>
 
       {/* POSITIONING */}
-      <section className="bg-secondary text-secondary-foreground">
+      <section ref={positionRef} className="bg-secondary text-secondary-foreground">
         <div className="container py-24 md:py-32 grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <span className="text-xs uppercase tracking-[0.22em] text-primary-glow font-semibold">Positioning</span>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium mt-5 leading-[1.05] text-balance">
+            <span data-reveal="fade-right" className="text-xs uppercase tracking-[0.22em] text-primary-glow font-semibold">Positioning</span>
+            <h2 data-reveal="fade-right" data-reveal-delay="100" className="font-display text-4xl md:text-5xl lg:text-6xl font-medium mt-5 leading-[1.05] text-balance">
               We are not a cleaning company. <br />
               Not a payroll bureau. <br />
               Not a bookkeeper.
             </h2>
-            <p className="mt-6 text-lg text-secondary-foreground/75 leading-relaxed max-w-lg">
+            <p data-reveal="fade-right" data-reveal-delay="200" className="mt-6 text-lg text-secondary-foreground/75 leading-relaxed max-w-lg">
               We are an <span className="text-primary-glow font-medium">operations and compliance partner</span> — taking over complex, high-risk business functions and running them properly.
             </p>
           </div>
@@ -212,7 +244,7 @@ export default function Home() {
               { v: "Audit", l: "Ready by design", d: "Immutable trails and structured documentation." },
               { v: "One", l: "Point of accountability", d: "One account manager. One escalation path." },
             ].map((c, i) => (
-              <div key={i} className="bg-secondary-foreground/5 border border-secondary-foreground/10 rounded-2xl p-6">
+              <div key={i} data-reveal="fade-up" data-reveal-delay={String(i * 100)} className="bg-secondary-foreground/5 border border-secondary-foreground/10 rounded-2xl p-6">
                 <div className="font-display text-3xl text-primary-glow">{c.v}</div>
                 <div className="font-medium text-secondary-foreground mt-1">{c.l}</div>
                 <div className="text-xs text-secondary-foreground/60 mt-2 leading-relaxed">{c.d}</div>
@@ -223,19 +255,21 @@ export default function Home() {
       </section>
 
       {/* WHY SEEDCAPITAL */}
-      <section className="container py-24 md:py-32">
-        <SectionHeading
-          eyebrow="Why SeedCapital"
-          title="Built like an operations team. Run like a discipline."
-          description="Six principles that make us different from any single-service vendor."
-          align="center"
-          className="mb-16"
-        />
+      <section ref={whyRef} className="container py-24 md:py-32">
+        <div data-reveal="fade-up">
+          <SectionHeading
+            eyebrow="Why SeedCapital"
+            title="Built like an operations team. Run like a discipline."
+            description="Six principles that make us different from any single-service vendor."
+            align="center"
+            className="mb-16"
+          />
+        </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {whySeed.map((w, i) => {
             const Icon = w.icon;
             return (
-              <div key={i} className="bg-card border border-border rounded-2xl p-7 shadow-soft hover:shadow-elegant transition-shadow">
+              <div key={i} data-reveal="fade-up" data-reveal-delay={String(i * 100)} className="bg-card border border-border rounded-2xl p-7 shadow-soft hover:shadow-elegant transition-shadow">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
                   <Icon size={22} />
                 </div>
@@ -248,17 +282,21 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="bg-muted/40 border-y border-border">
+      <section ref={testimonialsRef} className="bg-muted/40 border-y border-border">
         <div className="container py-24 md:py-32">
-          <SectionHeading
-            eyebrow="In their words"
-            title="Trusted across operations, finance and compliance."
-            align="center"
-            className="mb-16"
-          />
+          <div data-reveal="fade-up">
+            <SectionHeading
+              eyebrow="In their words"
+              title="Trusted across operations, finance and compliance."
+              align="center"
+              className="mb-16"
+            />
+          </div>
           <div className="grid md:grid-cols-3 gap-6">
             {homeTestimonials.map((t, i) => (
-              <Testimonial key={i} variant="compact" quote={t.quote} role={t.role} />
+              <div key={i} data-reveal="fade-up" data-reveal-delay={String(i * 150)}>
+                <Testimonial variant="compact" quote={t.quote} role={t.role} />
+              </div>
             ))}
           </div>
         </div>

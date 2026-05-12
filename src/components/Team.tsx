@@ -1,6 +1,7 @@
 import { Linkedin, Mail } from "lucide-react";
 import sphesihle from "@/assets/team-sphesihle.jpg";
 import SectionHeading from "./SectionHeading";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 const ceo = {
   name: "Sphesihle P. Makhanya",
@@ -16,17 +17,20 @@ interface Props {
 }
 
 export default function Team({ variant = "full" }: Props) {
+  const ref = useScrollReveal<HTMLElement>();
   return (
-    <section className="container py-20 md:py-28">
-      <SectionHeading
-        eyebrow="Leadership"
-        title="One name on every engagement."
-        description="Every client relationship is owned at executive level. No faceless service desk — direct line to the founder."
-        align="center"
-        className="mb-16"
-      />
+    <section ref={ref} className="container py-20 md:py-28">
+      <div data-reveal="fade-up">
+        <SectionHeading
+          eyebrow="Leadership"
+          title="One name on every engagement."
+          description="Every client relationship is owned at executive level. No faceless service desk — direct line to the founder."
+          align="center"
+          className="mb-16"
+        />
+      </div>
 
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto" data-reveal="fade-up" data-reveal-delay="200">
         <article className="group bg-card border border-border rounded-3xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-300 grid md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
           <div className="aspect-[4/5] md:aspect-auto overflow-hidden bg-muted">
             <img

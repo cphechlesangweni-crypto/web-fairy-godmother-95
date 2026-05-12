@@ -5,6 +5,7 @@ import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import CTABanner from "@/components/CTABanner";
 import Team from "@/components/Team";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import founderImage from "@/assets/team-sphesihle.jpg";
 
 const values = [
@@ -15,6 +16,11 @@ const values = [
 ];
 
 export default function About() {
+  const storyRef = useScrollReveal<HTMLElement>();
+  const valuesRef = useScrollReveal<HTMLElement>();
+  const founderRef = useScrollReveal<HTMLElement>();
+  const whatRef = useScrollReveal<HTMLElement>();
+
   return (
     <>
       <PageHero
@@ -24,14 +30,14 @@ export default function About() {
       />
 
       {/* Story */}
-      <section className="container py-20 md:py-28 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <section ref={storyRef} className="container py-20 md:py-28 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         <div>
-          <span className="text-xs uppercase tracking-[0.22em] text-primary font-semibold">Our story</span>
-          <h2 className="font-display text-3xl md:text-5xl text-secondary mt-5 leading-[1.1] text-balance">
+          <span data-reveal="fade-right" className="text-xs uppercase tracking-[0.22em] text-primary font-semibold">Our story</span>
+          <h2 data-reveal="fade-right" data-reveal-delay="100" className="font-display text-3xl md:text-5xl text-secondary mt-5 leading-[1.1] text-balance">
             Founded to fix the operational gap inside South African business.
           </h2>
         </div>
-        <div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed">
+        <div data-reveal="fade-left" data-reveal-delay="200" className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed">
           <p>
             Most South African businesses don't have an operations problem because they're badly run. They have it because the legal, compliance and process burden of running facilities, payroll and accounts payable in-house is now beyond what a single internal hire can carry.
           </p>
@@ -45,18 +51,20 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="bg-secondary text-secondary-foreground">
+      <section ref={valuesRef} className="bg-secondary text-secondary-foreground">
         <div className="container py-20 md:py-28">
-          <SectionHeading
-            eyebrow="Our values"
-            title={<span className="text-secondary-foreground">Growth · Finance · Empowerment · Trust</span>}
-            description={<span className="text-secondary-foreground/70">The four words below our logo are not decoration — they describe what we are accountable for.</span>}
-            align="center"
-            className="mb-16"
-          />
+          <div data-reveal="fade-up">
+            <SectionHeading
+              eyebrow="Our values"
+              title={<span className="text-secondary-foreground">Growth · Finance · Empowerment · Trust</span>}
+              description={<span className="text-secondary-foreground/70">The four words below our logo are not decoration — they describe what we are accountable for.</span>}
+              align="center"
+              className="mb-16"
+            />
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((v, i) => (
-              <div key={i} className="bg-secondary-foreground/5 border border-secondary-foreground/10 rounded-2xl p-7">
+              <div key={i} data-reveal="fade-up" data-reveal-delay={String(i * 120)} className="bg-secondary-foreground/5 border border-secondary-foreground/10 rounded-2xl p-7">
                 <div className="font-display text-3xl text-primary-glow mb-3">{v.word}</div>
                 <p className="text-sm text-secondary-foreground/75 leading-relaxed">{v.description}</p>
               </div>
@@ -66,8 +74,8 @@ export default function About() {
       </section>
 
       {/* Founder */}
-      <section className="container py-20 md:py-28">
-        <div className="bg-card border border-border rounded-3xl overflow-hidden shadow-elegant">
+      <section ref={founderRef} className="container py-20 md:py-28">
+        <div data-reveal="scale" className="bg-card border border-border rounded-3xl overflow-hidden shadow-elegant">
           <div className="grid md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] items-stretch">
             <div className="aspect-[4/5] md:aspect-auto bg-muted">
               <img
@@ -94,20 +102,22 @@ export default function About() {
       <Team />
 
       {/* What we do */}
-      <section className="container pb-20 md:pb-28">
-        <SectionHeading
-          eyebrow="What we run"
-          title="Three pillars. One operations partner."
-          align="center"
-          className="mb-12"
-        />
+      <section ref={whatRef} className="container pb-20 md:pb-28">
+        <div data-reveal="fade-up">
+          <SectionHeading
+            eyebrow="What we run"
+            title="Three pillars. One operations partner."
+            align="center"
+            className="mb-12"
+          />
+        </div>
         <div className="grid md:grid-cols-3 gap-5">
           {[
             { title: "Facilities & Workforce", href: "/facilities", desc: "Employer-of-record workforce management, daily operations and consumables supply." },
             { title: "Payroll Outsourcing", href: "/payroll", desc: "Full payroll function ownership — Payroll Intelligence, statutory submissions, labour-law triggers." },
             { title: "Accounts Payable", href: "/accounts-payable", desc: "AP Control — invoice capture, supplier verification, payment runs and reconciliations." },
-          ].map((p) => (
-            <Link key={p.href} to={p.href} className="group bg-card border border-border rounded-2xl p-7 shadow-soft hover:shadow-elegant transition-all hover:-translate-y-0.5">
+          ].map((p, i) => (
+            <Link key={p.href} to={p.href} data-reveal="fade-up" data-reveal-delay={String(i * 120)} className="group bg-card border border-border rounded-2xl p-7 shadow-soft hover:shadow-elegant transition-all hover:-translate-y-0.5">
               <h3 className="font-display text-xl text-secondary mb-3">{p.title}</h3>
               <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{p.desc}</p>
               <span className="inline-flex items-center gap-1.5 text-sm text-primary font-medium group-hover:gap-2.5 transition-all">

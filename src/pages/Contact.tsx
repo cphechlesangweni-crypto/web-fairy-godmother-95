@@ -8,6 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 const benefits = [
   {
@@ -29,6 +30,8 @@ const benefits = [
 
 export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
+  const benefitsRef = useScrollReveal<HTMLElement>();
+  const formRef = useScrollReveal<HTMLElement>();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,19 +52,21 @@ export default function Contact() {
       />
 
       {/* What you get */}
-      <section className="container py-20 md:py-28">
-        <SectionHeading
-          eyebrow="What you get when you contact us"
-          title="A free, no-obligation discovery call."
-          description="No hard sell. Just a structured conversation, an honest assessment and a clear written proposal."
-          align="center"
-          className="mb-16"
-        />
+      <section ref={benefitsRef} className="container py-20 md:py-28">
+        <div data-reveal="fade-up">
+          <SectionHeading
+            eyebrow="What you get when you contact us"
+            title="A free, no-obligation discovery call."
+            description="No hard sell. Just a structured conversation, an honest assessment and a clear written proposal."
+            align="center"
+            className="mb-16"
+          />
+        </div>
         <div className="grid md:grid-cols-3 gap-6">
           {benefits.map((b, i) => {
             const Icon = b.icon;
             return (
-              <div key={i} className="bg-card border border-border rounded-2xl p-8 shadow-soft">
+              <div key={i} data-reveal="fade-up" data-reveal-delay={String(i * 150)} className="bg-card border border-border rounded-2xl p-8 shadow-soft">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
                   <Icon size={22} />
                 </div>
@@ -81,9 +86,9 @@ export default function Contact() {
       </section>
 
       {/* Form */}
-      <section className="container pb-24">
+      <section ref={formRef} className="container pb-24">
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 items-start">
-          <div className="bg-card border border-border rounded-3xl p-8 md:p-12 shadow-elegant">
+          <div data-reveal="fade-right" className="bg-card border border-border rounded-3xl p-8 md:p-12 shadow-elegant">
             <h2 className="font-display text-3xl text-secondary mb-2">Book a discovery call</h2>
             <p className="text-muted-foreground mb-8">Send us a message and we'll respond within one business day.</p>
 
@@ -154,7 +159,7 @@ export default function Contact() {
             </form>
           </div>
 
-          <div className="space-y-5 lg:sticky lg:top-28">
+          <div data-reveal="fade-left" data-reveal-delay="200" className="space-y-5 lg:sticky lg:top-28">
             <div className="bg-secondary text-secondary-foreground rounded-3xl p-8 shadow-elegant">
               <h3 className="font-display text-2xl mb-6">Reach us directly</h3>
               <ul className="space-y-5">

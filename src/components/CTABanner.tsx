@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 interface Props {
   eyebrow?: string;
@@ -15,9 +16,10 @@ export default function CTABanner({
   description,
   ctaLabel = "Book a Discovery Call",
 }: Props) {
+  const ref = useScrollReveal<HTMLElement>();
   return (
-    <section className="container py-20 md:py-28">
-      <div className="relative overflow-hidden rounded-3xl bg-hero-gradient text-secondary-foreground p-10 md:p-16 shadow-elegant">
+    <section ref={ref} className="container py-20 md:py-28">
+      <div data-reveal="scale" className="relative overflow-hidden rounded-3xl bg-hero-gradient text-secondary-foreground p-10 md:p-16 shadow-elegant">
         <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] bg-primary/40 rounded-full blur-[100px]" />
         <div className="relative grid lg:grid-cols-[1fr_auto] gap-8 items-center">
           <div>
